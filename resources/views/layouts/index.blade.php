@@ -4,8 +4,11 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	{{-- Add CSRF Token --}}
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<title>Todo</title>
-  <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/style.css') }}">
+	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/assets/style.css') }}" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css'>
 </head>
@@ -38,5 +41,6 @@
 	</div>
 
   <script src="https://kit.fontawesome.com/e3c22ed780.js" crossorigin="anonymous"></script>
+  <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

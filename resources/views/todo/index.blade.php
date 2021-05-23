@@ -7,7 +7,7 @@
 @section('items')
 
 @foreach ($items as $item)
-	@include('components.item', ['todo' => $item->todo, 'completed' => $item->getCompleted()])
+	@include('components.item', [ 'item' => $item ])
 @endforeach
 
 @endsection

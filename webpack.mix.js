@@ -11,7 +11,15 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
+mix.js([
+        'resources/js/app.js',
+        // 'resources/js/assets/Todo.js',
+        'resources/js/assets/main.js',
+    ], 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         //
-    ]);
+    ])
+    .sourceMaps()
+    .autoload({
+        "jquery": ['$', 'window.jQuery'],
+    });

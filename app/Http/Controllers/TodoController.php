@@ -18,4 +18,17 @@ class TodoController extends Controller
         Todo::create([ 'todo' => $request->todo, 'status' => Todo::$defaultStatus ]);
         return redirect('/');
     }
+
+    public function remove(Request $request) {
+        $item = Todo::find($request->id);
+        $id = null;
+
+        if (isset($item)) {
+            $item->delete();
+            $id = $item->id;
+        }
+
+        // 削除した対象のidを返す
+        return ['id' => $id];
+    }
 }
