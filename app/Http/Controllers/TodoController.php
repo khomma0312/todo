@@ -19,6 +19,23 @@ class TodoController extends Controller
         return redirect('/');
     }
 
+    public function update(Request $request) {
+        // ステータスのアップデート処理
+        $item = Todo::find($request->id);
+
+        if (!isset($item)) {
+            return ['id' => null];
+        }
+
+        $status = $request->status;
+        $updatedStatus = (int)$status === Todo::$defaultStatus ? Todo::$doneStatus : Todo::$defaultStatus;
+
+        $item->status = $updatedStatus;
+        $item->save();
+
+        return ['id' => $item->id, 'status' => $item->status];
+    }
+
     public function remove(Request $request) {
         $item = Todo::find($request->id);
         $id = null;

@@ -15,13 +15,14 @@ class Todo extends Model
 
     // ステータスはデフォルトで0（未完了）にしておく
     public static $defaultStatus = 0;
+    public static $doneStatus = 1;
     protected $isDone = 1;
 
     public static $rules = [
         'todo' => 'required',
     ];
 
-    public function getCompleted() {
-        return (int) $this->status === $this->isDone ? 'completed' : '';
+    public function isDone() {
+        return (int) $this->status === $this->isDone;
     }
 }
