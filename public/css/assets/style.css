@@ -164,6 +164,10 @@ body {
     margin-bottom: 1rem;
 }
 
+.status-tab .nav-link.active {
+    pointer-events: none;
+}
+
 .list-wrapper {
     height: 100%;
     max-height: 100%

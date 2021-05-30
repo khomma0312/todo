@@ -139,10 +139,17 @@ export default class Todo {
 	 * @param {*} clickElm
 	 */
 	ajaxToGetItemsByStatus(clickElm = null) {
-		const status = clickElm ? clickElm.closest('.nav-item').data('status') : null;
+		const navItem = clickElm ? clickElm.closest('.nav-item') : null;
+		const status = navItem ? navItem.data('status') : null;
 		this.getAjax(this.todosUrl, {status})
 		.done((data) => {
 			const todoList = $('.todo-list');
+
+			// クラス付け替え
+			if (navItem) {
+				$('.nav-link.active').removeClass('active');
+				navItem.children('.nav-link').addClass('active');
+			}
 
 			// 削除処理
 			todoList.empty();
