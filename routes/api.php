@@ -21,3 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/todos', [TodoController::class, 'index']);
+Route::post('/update', [TodoController::class, 'update']);
+Route::post('/delete', [TodoController::class, 'remove']);

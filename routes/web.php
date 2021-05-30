@@ -14,7 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', [TodoController::class, 'index']);
-
 Route::post('/add', [TodoController::class, 'create']);
-Route::post('/update', [TodoController::class, 'update']);
-Route::post('/delete', [TodoController::class, 'remove']);

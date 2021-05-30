@@ -1,9 +1,10 @@
 export default class Todo {
 	constructor() {
 		// URLs
-		this.todosUrl = '/api/todos';
-		this.deleteUrl = '/delete';
-		this.updateUrl = '/update';
+		this.apiUrl = '/api';
+		this.todosUrl = this.apiUrl + '/todos';
+		this.deleteUrl = this.apiUrl + '/delete';
+		this.updateUrl = this.apiUrl + '/update';
 
 		// status
 		this.doneStatus = 1;
