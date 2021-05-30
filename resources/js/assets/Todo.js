@@ -37,8 +37,7 @@ export default class Todo {
 	}
 
 	/**
-	 * Ajax for POST request.
-	 * パラメータでクリック対象と、POSTするdataのオブジェクトを受け取る
+	 * Base ajax request function.
 	 * @param {string} url Ajax先URL
 	 * @param {Object} data Postで送るデータ
 	 * @param {string} type HTTP通信の種類
