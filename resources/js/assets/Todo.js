@@ -112,7 +112,6 @@ export default class Todo {
 		const status = todo.hasClass(this.completedClass) ? 1 : 0;
 		this.postAjax(this.updateUrl, {id, status})
 		.done((data) => {
-			console.log(data);
 			const id = data.id;
 			const todo = $('.todo-list .todo[data-id="' + id + '"]');
 			if ( data.status === this.doneStatus && !todo.hasClass(this.completedClass) ) {
