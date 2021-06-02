@@ -1,10 +1,9 @@
 export default class Todo {
 	constructor() {
 		// URLs
-		this.apiUrl = '/api';
-		this.todosUrl = this.apiUrl + '/todos';
-		this.deleteUrl = this.apiUrl + '/delete';
-		this.updateUrl = this.apiUrl + '/update';
+		this.todosUrl = '/todos';
+		this.deleteUrl = '/delete';
+		this.updateUrl = '/update';
 
 		// status
 		this.doneStatus = 1;
@@ -113,6 +112,7 @@ export default class Todo {
 		const status = todo.hasClass(this.completedClass) ? 1 : 0;
 		this.postAjax(this.updateUrl, {id, status})
 		.done((data) => {
+			console.log(data);
 			const id = data.id;
 			const todo = $('.todo-list .todo[data-id="' + id + '"]');
 			if ( data.status === this.doneStatus && !todo.hasClass(this.completedClass) ) {
@@ -139,6 +139,10 @@ export default class Todo {
 	 * @param {*} clickElm
 	 */
 	ajaxToGetItemsByStatus(clickElm = null) {
+		if ( location.pathname !== '/' ) {
+			return;
+		}
+
 		const navItem = clickElm ? clickElm.closest('.nav-item') : null;
 		const status = navItem ? navItem.data('status') : null;
 		this.getAjax(this.todosUrl, {status})
@@ -157,7 +161,8 @@ export default class Todo {
 			const newItems = data.todos.map((item) => this.getItemTemplate(item)).join('');
 			todoList.append(newItems);
 		})
-		.fail(() => {
+		.fail((e) => {
+			console.error(e);
 			alert('対象データの取得に失敗しました。');
 		});
 	}
@@ -178,10 +183,10 @@ export default class Todo {
 	 */
 	getItemTemplate(item) {
 		return (
-		`<li class="todo${ item.status === '1' ? ' completed' : '' }" data-id="${ item.id }">
+		`<li class="todo${ item.status === 1 ? ' completed' : '' }" data-id="${ item.id }">
 			<div class="form-check">
 				<label class="form-check-label">
-				<input class="checkbox" name="status" type="checkbox" ${ item.status === '1' ? 'checked' : '' }>
+				<input class="checkbox" name="status" type="checkbox" ${ item.status === 1 ? 'checked' : '' }>
 				${ item.todo }
 				<i class="input-helper"></i>
 				</label>

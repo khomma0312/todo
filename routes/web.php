@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\TodoController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,5 +14,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [TodoController::class, 'index']);
-Route::post('/add', [TodoController::class, 'create']);
+Route::middleware('auth')->group(function() {
+	Route::get('/', [TodoController::class, 'index']);
+	Route::post('/add', [TodoController::class, 'create']);
+	Route::get('/todos', [TodoController::class, 'todos']);
+	Route::post('/update', [TodoController::class, 'update']);
+	Route::post('/delete', [TodoController::class, 'remove']);
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

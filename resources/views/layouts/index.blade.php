@@ -37,7 +37,6 @@
 							</div>
 							<div class="list-wrapper">
 								<ul class="d-flex flex-column-reverse todo-list">
-									{{-- @yield('items') --}}
 								</ul>
 							</div>
 						</div>
